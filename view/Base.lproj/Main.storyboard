@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hke-1w-iz9">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Initial Swipe-->
+        <scene sceneID="WTV-GT-sL8">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hke-1w-iz9" customClass="InitialSwipe" customModule="Cova" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="INb-AC-Neh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-776" y="102"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="first" id="BYZ-38-t0r" customClass="ViewController" customModule="Cova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzZ-Rt-uzE">
+                                <rect key="frame" x="144" y="811" width="126" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="تخطي">
+                                    <color key="titleColor" red="0.78097230200000001" green="0.52245509619999997" blue="0.48625928159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FO7-z7-KHv" kind="show" animates="NO" id="M8x-LR-Sig"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="أفضل أغاني الزمن الجميل لأساطير الموسيقى في العالم العربي مثل فيروز" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lod-7R-MOd">
+                                <rect key="frame" x="50" y="142.5" width="314" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Ffy-9D-wtc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1334" translatesAutoresizingMaskIntoConstraints="NO" id="RC4-ng-WvV">
+                                <rect key="frame" x="69" y="362.5" width="276.5" height="171.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="مشروبك الساخن" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPq-Pl-Lt9">
+                                <rect key="frame" x="97" y="84.5" width="220" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="SYB-4V-Lbn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WzZ-Rt-uzE" secondAttribute="trailing" constant="144" id="6j3-II-tiO"/>
+                            <constraint firstItem="RC4-ng-WvV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Exx-Ye-WEv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WzZ-Rt-uzE" secondAttribute="bottom" constant="15" id="FvA-mv-lld"/>
+                            <constraint firstItem="qPq-Pl-Lt9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40.5" id="RUH-mz-evo"/>
+                            <constraint firstItem="WzZ-Rt-uzE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="144" id="T7l-4e-VX3"/>
+                            <constraint firstItem="Lod-7R-MOd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="TbF-hF-rXD"/>
+                            <constraint firstItem="qPq-Pl-Lt9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="97" id="cwQ-pA-Uex"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lod-7R-MOd" secondAttribute="trailing" constant="50" id="dVI-Bh-uks"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qPq-Pl-Lt9" secondAttribute="trailing" constant="97" id="fkR-4y-NlU"/>
+                            <constraint firstItem="RC4-ng-WvV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h0C-io-krd"/>
+                            <constraint firstItem="Lod-7R-MOd" firstAttribute="top" secondItem="qPq-Pl-Lt9" secondAttribute="bottom" constant="3" id="qwg-j3-mRl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147.82608695652175" y="80.357142857142847"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="j0y-Dp-cdr">
+            <objects>
+                <viewController storyboardIdentifier="second" id="vOB-vU-M2o" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="grK-lg-cet">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZE-qJ-EvT">
+                                <rect key="frame" x="144" y="811" width="126" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="تخطي">
+                                    <color key="titleColor" red="0.78097230200000001" green="0.52245509619999997" blue="0.48625928159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FO7-z7-KHv" kind="showDetail" id="Wmp-fw-lbY"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1339" translatesAutoresizingMaskIntoConstraints="NO" id="ZAt-zP-0xS">
+                                <rect key="frame" x="69" y="365" width="276.5" height="166.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="أفضل أغاني الزمن الجميل لأساطير الموسيقى في العالم العربي مثل فيروز" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABx-kr-fG8">
+                                <rect key="frame" x="50" y="142.5" width="314" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Vmb-nS-8MZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="مثلجات طبيعية" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRn-U2-0mR">
+                                <rect key="frame" x="97" y="84.5" width="220" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Ru0-QG-57f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rZE-qJ-EvT" firstAttribute="leading" secondItem="DPS-kE-Rb2" secondAttribute="leading" constant="144" id="2cl-ir-lOd"/>
+                            <constraint firstItem="ABx-kr-fG8" firstAttribute="leading" secondItem="DPS-kE-Rb2" secondAttribute="leading" constant="50" id="4JB-9N-UvW"/>
+                            <constraint firstItem="DPS-kE-Rb2" firstAttribute="trailing" secondItem="ABx-kr-fG8" secondAttribute="trailing" constant="50" id="DAz-c5-IbH"/>
+                            <constraint firstItem="ZAt-zP-0xS" firstAttribute="centerX" secondItem="grK-lg-cet" secondAttribute="centerX" id="Fgc-WN-ZbS"/>
+                            <constraint firstItem="DPS-kE-Rb2" firstAttribute="trailing" secondItem="rZE-qJ-EvT" secondAttribute="trailing" constant="144" id="IYl-8d-YDZ"/>
+                            <constraint firstItem="ABx-kr-fG8" firstAttribute="top" secondItem="xRn-U2-0mR" secondAttribute="bottom" constant="3" id="M5b-uv-AfG"/>
+                            <constraint firstItem="DPS-kE-Rb2" firstAttribute="trailing" secondItem="xRn-U2-0mR" secondAttribute="trailing" constant="97" id="Wj3-q3-4Vv"/>
+                            <constraint firstItem="xRn-U2-0mR" firstAttribute="top" secondItem="DPS-kE-Rb2" secondAttribute="top" constant="40.5" id="bCz-uA-0WC"/>
+                            <constraint firstItem="DPS-kE-Rb2" firstAttribute="bottom" secondItem="rZE-qJ-EvT" secondAttribute="bottom" constant="15" id="cKe-ct-vaf"/>
+                            <constraint firstItem="xRn-U2-0mR" firstAttribute="leading" secondItem="DPS-kE-Rb2" secondAttribute="leading" constant="97" id="lhY-em-8yB"/>
+                            <constraint firstItem="ZAt-zP-0xS" firstAttribute="centerY" secondItem="grK-lg-cet" secondAttribute="centerY" id="pGo-bH-MFl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DPS-kE-Rb2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qam-9F-T6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="79"/>
+        </scene>
+        <!--regestration-->
+        <scene sceneID="b0F-By-8a7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="regestration" id="FO7-z7-KHv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Mau-tm-EGB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgJ-ZJ-V64" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="520"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Lkz-C9-nBP">
+            <objects>
+                <viewController storyboardIdentifier="third" id="BeW-4Q-YjZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uyb-sx-vJv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UV-ep-olK">
+                                <rect key="frame" x="144" y="808" width="126" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="ابدأ">
+                                    <color key="titleColor" red="0.78097230200000001" green="0.52245509619999997" blue="0.48625928159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.78097230200000001" green="0.52245509619999997" blue="0.48625928159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="FO7-z7-KHv" kind="showDetail" id="ma7-VW-4rm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="مخبوزات طازجة" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5I-xr-aJe">
+                                <rect key="frame" x="97" y="84.5" width="220" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="dda-o4-Zpg"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="jo4-49-X3Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="أفضل أغاني الزمن الجميل لأساطير الموسيقى في العالم العربي مثل فيروز" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0T-Fh-meZ">
+                                <rect key="frame" x="50" y="142.5" width="314" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="pxO-QN-tA9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1338" translatesAutoresizingMaskIntoConstraints="NO" id="dte-dN-M78">
+                                <rect key="frame" x="68.5" y="329.5" width="277" height="237"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9UV-ep-olK" firstAttribute="leading" secondItem="dd0-HC-MUA" secondAttribute="leading" constant="144" id="7LG-eV-vN5"/>
+                            <constraint firstItem="dd0-HC-MUA" firstAttribute="bottom" secondItem="9UV-ep-olK" secondAttribute="bottom" constant="15" id="Eks-V3-gdT"/>
+                            <constraint firstItem="dte-dN-M78" firstAttribute="centerX" secondItem="Uyb-sx-vJv" secondAttribute="centerX" id="Lmp-Gj-QdE"/>
+                            <constraint firstItem="q0T-Fh-meZ" firstAttribute="leading" secondItem="dd0-HC-MUA" secondAttribute="leading" constant="50" id="My4-xm-lrZ"/>
+                            <constraint firstItem="dd0-HC-MUA" firstAttribute="trailing" secondItem="F5I-xr-aJe" secondAttribute="trailing" constant="97" id="VHl-an-4H1"/>
+                            <constraint firstItem="dd0-HC-MUA" firstAttribute="trailing" secondItem="q0T-Fh-meZ" secondAttribute="trailing" constant="50" id="Xn1-u5-qHv"/>
+                            <constraint firstItem="q0T-Fh-meZ" firstAttribute="top" secondItem="F5I-xr-aJe" secondAttribute="bottom" constant="3" id="Xya-NP-00C"/>
+                            <constraint firstItem="dd0-HC-MUA" firstAttribute="trailing" secondItem="9UV-ep-olK" secondAttribute="trailing" constant="144" id="aeV-gi-hba"/>
+                            <constraint firstItem="F5I-xr-aJe" firstAttribute="leading" secondItem="dd0-HC-MUA" secondAttribute="leading" constant="97" id="h5M-Ku-beF"/>
+                            <constraint firstItem="dte-dN-M78" firstAttribute="centerY" secondItem="Uyb-sx-vJv" secondAttribute="centerY" id="kYq-HK-cSk"/>
+                            <constraint firstItem="F5I-xr-aJe" firstAttribute="top" secondItem="dd0-HC-MUA" secondAttribute="top" constant="40.5" id="xTd-J4-3um"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dd0-HC-MUA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxx-bv-Nbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457.9710144927537" y="78.348214285714278"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="M8x-LR-Sig"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="Group 1334" width="276.5" height="171.5"/>
+        <image name="Group 1338" width="277" height="237"/>
+        <image name="Group 1339" width="276.5" height="166.5"/>
+    </resources>
+</document>
