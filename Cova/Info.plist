@@ -15,13 +15,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>الرجاء ادخال موقعك، لنتمكن من التوصيل لك</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>hey! I want to know where you're ? </string>
+	<string>الرجاء ادخال موقعك، لنتمكن من التوصيل لك</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HacenAlgeriaBd.ttf</string>

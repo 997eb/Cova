@@ -9,6 +9,8 @@ target 'Cova' do
      pod 'SwiftyJSON'
      pod 'SVProgressHUD'
      pod 'IQKeyboardManagerSwift'
+pod 'Firebase/Crashlytics'
+pod 'Firebase/Analytics'
 
   # Pods for Cova
 

@@ -11,6 +11,7 @@
 		0721A58B242960B7009D28E0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721A58A242960B7009D28E0 /* SignUpViewController.swift */; };
 		07225A1B246186570032EDA4 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07225A1A246186570032EDA4 /* Order.swift */; };
 		072F806E2460DA2E00B266FC /* specification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072F806D2460DA2E00B266FC /* specification.swift */; };
+		072FC1BF24871B4500460F1C /* StoreEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072FC1BE24871B4500460F1C /* StoreEncode.swift */; };
 		0742D43C2446DC7100E51B23 /* font in Resources */ = {isa = PBXBuildFile; fileRef = 0742D43B2446DC7100E51B23 /* font */; };
 		0742FC782449A19600068F69 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0742FC772449A19600068F69 /* TypeCell.swift */; };
 		0742FC7A2449A22500068F69 /* menuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0742FC792449A22500068F69 /* menuCell.swift */; };
@@ -22,6 +23,7 @@
 		0744C0B3246437D70040E7AD /* billCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0744C0B2246437D70040E7AD /* billCell.swift */; };
 		07649EBF2444675C00044527 /* CoffeeStoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649EBE2444675C00044527 /* CoffeeStoresViewController.swift */; };
 		07655797244562C5009F54E2 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655796244562C5009F54E2 /* Stores.swift */; };
+		076A48FB2486084C00F4DE64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076A48FA2486084C00F4DE64 /* GoogleService-Info.plist */; };
 		076ED06224453144008D0F3F /* coffeeStoreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076ED06124453144008D0F3F /* coffeeStoreaTableViewCell.swift */; };
 		077887CF2452C4C300485DB1 /* orderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077887CE2452C4C300485DB1 /* orderCell.swift */; };
 		0783053D2468BB760044DA65 /* MenuD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0783053C2468BB760044DA65 /* MenuD.swift */; };
@@ -41,6 +43,7 @@
 		07E73124246B6A330099AE47 /* userSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E73123246B6A330099AE47 /* userSetting.swift */; };
 		07EF5AE1243D73E00048BAC2 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5AE0243D73E00048BAC2 /* mapViewController.swift */; };
 		07EF5AE3243D75370048BAC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EF5AE2243D75370048BAC2 /* CoreLocation.framework */; };
+		07F6AC952482EC3000E38456 /* CovaTests1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6AC942482EC3000E38456 /* CovaTests1.swift */; };
 		07FBA1B3245254C800818B11 /* orderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FBA1B2245254C800818B11 /* orderViewController.swift */; };
 		51AE8A62C5F89DEB9D56EFC0 /* Pods_Cova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4DEEEA7B14C1220D440BD8 /* Pods_Cova.framework */; };
 		767094DA4FF8ED63C9DDE712 /* Pods_CovaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F16FDE3C0D303977A82454E /* Pods_CovaTests.framework */; };
@@ -62,6 +65,13 @@
 			remoteGlobalIDString = 07A5DE1A2427E85400C03B91;
 			remoteInfo = Cova;
 		};
+		07F6AC972482EC3000E38456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A5DE132427E85400C03B91 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07A5DE1A2427E85400C03B91;
+			remoteInfo = Cova;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +79,7 @@
 		0721A58A242960B7009D28E0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		07225A1A246186570032EDA4 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		072F806D2460DA2E00B266FC /* specification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = specification.swift; sourceTree = "<group>"; };
+		072FC1BE24871B4500460F1C /* StoreEncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEncode.swift; sourceTree = "<group>"; };
 		0742D43B2446DC7100E51B23 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; name = font; path = ../font; sourceTree = "<group>"; };
 		0742FC772449A19600068F69 /* TypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
 		0742FC792449A22500068F69 /* menuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuCell.swift; sourceTree = "<group>"; };
@@ -80,6 +91,7 @@
 		0744C0B2246437D70040E7AD /* billCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = billCell.swift; sourceTree = "<group>"; };
 		07649EBE2444675C00044527 /* CoffeeStoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeStoresViewController.swift; sourceTree = "<group>"; };
 		07655796244562C5009F54E2 /* Stores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
+		076A48FA2486084C00F4DE64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		076ED06124453144008D0F3F /* coffeeStoreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coffeeStoreaTableViewCell.swift; sourceTree = "<group>"; };
 		077887CE2452C4C300485DB1 /* orderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderCell.swift; sourceTree = "<group>"; };
 		0783053C2468BB760044DA65 /* MenuD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuD.swift; sourceTree = "<group>"; };
@@ -106,6 +118,9 @@
 		07E73123246B6A330099AE47 /* userSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSetting.swift; sourceTree = "<group>"; };
 		07EF5AE0243D73E00048BAC2 /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		07EF5AE2243D75370048BAC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		07F6AC922482EC3000E38456 /* CovaTests1.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovaTests1.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F6AC942482EC3000E38456 /* CovaTests1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovaTests1.swift; sourceTree = "<group>"; };
+		07F6AC962482EC3000E38456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07FBA1B2245254C800818B11 /* orderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderViewController.swift; sourceTree = "<group>"; };
 		2E4162BAE91292DB77A2E9DD /* Pods-Cova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cova.debug.xcconfig"; path = "Target Support Files/Pods-Cova/Pods-Cova.debug.xcconfig"; sourceTree = "<group>"; };
 		4A4DEEEA7B14C1220D440BD8 /* Pods_Cova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B467B0AF0D911E6F5E18DF28 /* Pods_Cova_CovaUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F6AC8F2482EC3000E38456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +209,7 @@
 				07A5DE1D2427E85400C03B91 /* Cova */,
 				07A5DE322427E85500C03B91 /* CovaTests */,
 				07A5DE3D2427E85500C03B91 /* CovaUITests */,
+				07F6AC932482EC3000E38456 /* CovaTests1 */,
 				07A5DE1C2427E85400C03B91 /* Products */,
 				67F57C7D0E205F9477440FB3 /* Pods */,
 				170CEA7384E11FCBE908404D /* Frameworks */,
@@ -199,6 +222,7 @@
 				07A5DE1B2427E85400C03B91 /* Cova.app */,
 				07A5DE2F2427E85500C03B91 /* CovaTests.xctest */,
 				07A5DE3A2427E85500C03B91 /* CovaUITests.xctest */,
+				07F6AC922482EC3000E38456 /* CovaTests1.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,6 +232,7 @@
 			children = (
 				0742D43B2446DC7100E51B23 /* font */,
 				07A5DE1E2427E85400C03B91 /* AppDelegate.swift */,
+				076A48FA2486084C00F4DE64 /* GoogleService-Info.plist */,
 				07A5DE252427E85500C03B91 /* Assets.xcassets */,
 				07A5DE2A2427E85500C03B91 /* Info.plist */,
 			);
@@ -242,6 +267,7 @@
 				07225A1A246186570032EDA4 /* Order.swift */,
 				0783053E2468BEE30044DA65 /* menuEncode.swift */,
 				07E73123246B6A330099AE47 /* userSetting.swift */,
+				072FC1BE24871B4500460F1C /* StoreEncode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +295,15 @@
 				07A5DE512428006E00C03B91 /* InitialSwipe.swift */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		07F6AC932482EC3000E38456 /* CovaTests1 */ = {
+			isa = PBXGroup;
+			children = (
+				07F6AC942482EC3000E38456 /* CovaTests1.swift */,
+				07F6AC962482EC3000E38456 /* Info.plist */,
+			);
+			path = CovaTests1;
 			sourceTree = "<group>";
 		};
 		07FBA1B1245254AF00818B11 /* Order */ = {
@@ -310,16 +345,28 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		0773277824831C1F00C12BDD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		07A5DE1A2427E85400C03B91 /* Cova */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07A5DE432427E85500C03B91 /* Build configuration list for PBXNativeTarget "Cova" */;
 			buildPhases = (
 				AAF8DC3E1C4E9FDE9F3FC08B /* [CP] Check Pods Manifest.lock */,
+				0773277824831C1F00C12BDD /* Headers */,
 				07A5DE172427E85400C03B91 /* Sources */,
 				07A5DE182427E85400C03B91 /* Frameworks */,
 				07A5DE192427E85400C03B91 /* Resources */,
 				5B43002E521C9319D5FEFB32 /* [CP] Embed Pods Frameworks */,
+				077327772483186B00C12BDD /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -369,13 +416,31 @@
 			productReference = 07A5DE3A2427E85500C03B91 /* CovaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		07F6AC912482EC3000E38456 /* CovaTests1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F6AC9B2482EC3000E38456 /* Build configuration list for PBXNativeTarget "CovaTests1" */;
+			buildPhases = (
+				07F6AC8E2482EC3000E38456 /* Sources */,
+				07F6AC8F2482EC3000E38456 /* Frameworks */,
+				07F6AC902482EC3000E38456 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07F6AC982482EC3000E38456 /* PBXTargetDependency */,
+			);
+			name = CovaTests1;
+			productName = CovaTests1;
+			productReference = 07F6AC922482EC3000E38456 /* CovaTests1.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		07A5DE132427E85400C03B91 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Ebtsam alkhuzai";
 				TargetAttributes = {
@@ -388,6 +453,10 @@
 					};
 					07A5DE392427E85500C03B91 = {
 						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 07A5DE1A2427E85400C03B91;
+					};
+					07F6AC912482EC3000E38456 = {
+						CreatedOnToolsVersion = 11.4;
 						TestTargetID = 07A5DE1A2427E85400C03B91;
 					};
 				};
@@ -408,6 +477,7 @@
 				07A5DE1A2427E85400C03B91 /* Cova */,
 				07A5DE2E2427E85500C03B91 /* CovaTests */,
 				07A5DE392427E85500C03B91 /* CovaUITests */,
+				07F6AC912482EC3000E38456 /* CovaTests1 */,
 			);
 		};
 /* End PBXProject section */
@@ -424,6 +494,7 @@
 				0744C0AD246431B80040E7AD /* order.storyboard in Resources */,
 				07A5DE262427E85500C03B91 /* Assets.xcassets in Resources */,
 				0742D43C2446DC7100E51B23 /* font in Resources */,
+				076A48FB2486084C00F4DE64 /* GoogleService-Info.plist in Resources */,
 				07B9A3E8242AB2E2000774F1 /* homePage.storyboard in Resources */,
 				07A5DE242427E85400C03B91 /* Main.storyboard in Resources */,
 			);
@@ -443,9 +514,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		07F6AC902482EC3000E38456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		077327772483186B00C12BDD /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		426D1EC648BE408956F3AD2C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -568,6 +666,7 @@
 				07A584B12441FF1300C7D16A /* API.swift in Sources */,
 				0744C0AB246348BD0040E7AD /* OrderaCell.swift in Sources */,
 				07AC002F2456A5BA00390FA7 /* Items.swift in Sources */,
+				072FC1BF24871B4500460F1C /* StoreEncode.swift in Sources */,
 				07CDA6D2243C325700CC46B8 /* signInViewController.swift in Sources */,
 				076ED06224453144008D0F3F /* coffeeStoreaTableViewCell.swift in Sources */,
 				07EF5AE1243D73E00048BAC2 /* mapViewController.swift in Sources */,
@@ -595,6 +694,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		07F6AC8E2482EC3000E38456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F6AC952482EC3000E38456 /* CovaTests1.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -607,6 +714,11 @@
 			isa = PBXTargetDependency;
 			target = 07A5DE1A2427E85400C03B91 /* Cova */;
 			targetProxy = 07A5DE3B2427E85500C03B91 /* PBXContainerItemProxy */;
+		};
+		07F6AC982482EC3000E38456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07A5DE1A2427E85400C03B91 /* Cova */;
+			targetProxy = 07F6AC972482EC3000E38456 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -664,7 +776,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -752,16 +864,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ANF396TXPY;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GH642YCX6B;
 				INFOPLIST_FILE = Cova/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wm.test.Cova;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wm.app.Cova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -771,16 +886,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ANF396TXPY;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GH642YCX6B;
 				INFOPLIST_FILE = Cova/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wm.test.Cova;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wm.app.Cova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -866,6 +983,48 @@
 			};
 			name = Release;
 		};
+		07F6AC992482EC3000E38456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GH642YCX6B;
+				INFOPLIST_FILE = CovaTests1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wm.test.CovaTests1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cova.app/Cova";
+			};
+			name = Debug;
+		};
+		07F6AC9A2482EC3000E38456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GH642YCX6B;
+				INFOPLIST_FILE = CovaTests1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wm.test.CovaTests1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cova.app/Cova";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -901,6 +1060,15 @@
 			buildConfigurations = (
 				07A5DE4A2427E85500C03B91 /* Debug */,
 				07A5DE4B2427E85500C03B91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07F6AC9B2482EC3000E38456 /* Build configuration list for PBXNativeTarget "CovaTests1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F6AC992482EC3000E38456 /* Debug */,
+				07F6AC9A2482EC3000E38456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

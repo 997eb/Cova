@@ -13,12 +13,16 @@ import SVProgressHUD
 class billViewController: UIViewController {
     
     
+    var choices = [Order.items.choices]()
+    var menu = [MenuD]()
+    var specification = [Specification]()
+    
     @IBOutlet weak var location: UILabel!
     var itemsObj = Items()
-    var items: [String] = []
+    var itemsNames: [String] = []
     var quantity: [Int] = []
     var prices: [Int] = []
-    @IBOutlet weak var deliveryTime: UILabel!
+ //   @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var currentDay: UILabel!
     @IBOutlet weak var totalDeliveryPrice: UILabel!
     @IBOutlet weak var itemsTotalPrice: UILabel!
@@ -102,15 +106,66 @@ class billViewController: UIViewController {
             
             
             let orders = Order.items(menu_item_id: id , quantity: quantity, choices: [])
+            
             quantityItems.append(orders)
         }
         return quantityItems
     }
     
     
-    func combinePrices() -> Int{
+    @IBAction func deleteCell(_ sender: Any) {
+   
+       let point = (sender as AnyObject).convert(CGPoint.zero, to: tableview)
+        guard let indexPath = tableview.indexPathForRow(at: point) else {return}
+
         
-        let priceArr = self.itemsObj.getRricesArray()
+        
+        if itemsObj.getItems().count == 1
+               {
+                  clearCart()
+                performSegue(withIdentifier: "emptycart", sender: nil)
+
+               }
+        else {
+        self.itemsNames.remove(at: indexPath.row)
+        self.itemsObj.saveItemsName(name: itemsNames)
+        
+        var itemsID = itemsObj.getItems()
+        itemsID.remove(at: indexPath.row)
+        itemsObj.saveItemsID(itemArr: itemsID)
+
+        
+        self.quantity.remove(at: indexPath.row)
+        self.itemsObj.saveQuantity(quantity: self.quantity)
+        
+        self.prices.remove(at: indexPath.row)
+        self.itemsObj.saveCollectedPrices(totalPrices: self.prices)
+        
+        let total1 = self.combinePrices(priceArr: prices)
+        
+        itemsObj.saveTotalItemPrices(total: total1)
+       
+        
+       
+        
+        var quantityItems = itemsObj.getOrder()
+      
+        quantityItems.remove(at: indexPath.row)
+        itemsObj.saveOrder(order: quantityItems)
+
+        self.tableview.reloadData()
+        
+        
+        let total = itemsObj.getTotalItemPrices() + 5
+          self.totalDeliveryPrice.text = "\(total)"
+          self.storeName.text = Stores.getStoreName()
+
+          self.itemsTotalPrice.text = "\(itemsObj.getTotalItemPrices())"
+
+        }}
+    
+    func combinePrices(priceArr:[Int]) -> Int{
+
         var total:Int = 0
         for price in priceArr {
             total = price + total
@@ -130,24 +185,27 @@ class billViewController: UIViewController {
         let formattedDate = format.string(from: date)
         self.currentDay.text = formattedDate
         
-        let format2 = DateFormatter()
+       /* let format2 = DateFormatter()
         format2.dateFormat = "HH:mm a"
         format2.locale = Locale(identifier: "en")
         date.addTimeInterval(60 * 60)
         let formattedDate2 = format2.string(from: date)
         self.deliveryTime.text = formattedDate2
+        */
         
-        self.location.text = "\(userSetting.getCityLocation()!) - \(userSetting.getStreetLocation()!)"
+        if userSetting.getCityLocation() != nil && userSetting.getStreetLocation() != nil {
         
+        self.location.text = "\(String(describing: userSetting.getCityLocation()!)) - \(String(describing: userSetting.getStreetLocation()!))"
+        }
         
-        self.items = itemsObj.getItemsNames()
+        self.itemsNames = itemsObj.getItemsNames()
         self.quantity = itemsObj.getquantity()
         self.prices = itemsObj.getRricesArray()
         
-        let total = self.combinePrices() + 5
+        let total = itemsObj.getTotalItemPrices() + 5
         self.totalDeliveryPrice.text = "\(total)"
         self.storeName.text = Stores.getStoreName()
-        self.itemsTotalPrice.text = "\(self.combinePrices())"
+        self.itemsTotalPrice.text = "\(itemsObj.getTotalItemPrices())"
         
         billLabelView.layer.cornerRadius = 10
         billLabelView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -171,8 +229,12 @@ class billViewController: UIViewController {
         billView.layer.shadowPath = UIBezierPath(rect: billView.bounds).cgPath
         billView.layer.shouldRasterize = true
         
+        tableview.allowsSelection = false
+        tableview.tableFooterView = UIView()
+        tableview.separatorInset = .zero
+        tableview.contentInset = .zero
+        tableview.separatorStyle = .none
         
-        tableview.isScrollEnabled = false
         tableview.layoutIfNeeded()
         
         
@@ -183,7 +245,7 @@ class billViewController: UIViewController {
 extension billViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.itemsNames.count
         
     }
     
@@ -196,18 +258,38 @@ extension billViewController:UITableViewDataSource,UITableViewDelegate{
         
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.contentView.layer.masksToBounds = true
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if  let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? billCell {
             
-            cell.itemName.text = "\(self.items[indexPath.row])"
+            cell.itemName.text = "\(self.itemsNames[indexPath.row])"
             cell.itemPrice.text = "\(self.prices[indexPath.row])"
             cell.itemQuantity.text = " الكمية: \(self.quantity[indexPath.row])"
+            
+            cell.backgroundColor = .clear // very important
+            cell.layer.masksToBounds = false
+            cell.layer.shadowOpacity = 0.02
+            cell.layer.shadowRadius = 0.1
+            cell.layer.shadowOffset = .zero
+            cell.layer.shadowPath = UIBezierPath(rect: cell.viewBill.bounds).cgPath
+            cell.layer.shadowColor = UIColor.lightGray.cgColor
+            
+            cell.contentView.backgroundColor = .clear
+            cell.contentView.layer.cornerRadius = 8
+            
             return cell
         }
         
         return UITableViewCell()
     }
     
-    
 }
+

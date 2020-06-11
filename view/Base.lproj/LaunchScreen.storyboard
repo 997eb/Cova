@@ -16,16 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-splash" translatesAutoresizingMaskIntoConstraints="NO" id="3T0-XV-6pu">
-                                <rect key="frame" x="0.0" y="-2" width="414" height="900"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-splash-1" translatesAutoresizingMaskIntoConstraints="NO" id="3T0-XV-6pu">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="3T0-XV-6pu" firstAttribute="trailing" secondItem="2jY-Rh-GtP" secondAttribute="trailing" id="7KY-gu-gd1"/>
+                            <constraint firstAttribute="bottom" secondItem="3T0-XV-6pu" secondAttribute="bottom" id="872-4G-wLz"/>
                             <constraint firstItem="3T0-XV-6pu" firstAttribute="trailing" secondItem="2jY-Rh-GtP" secondAttribute="trailing" id="DGI-Ku-vGn"/>
+                            <constraint firstItem="3T0-XV-6pu" firstAttribute="top" secondItem="eXQ-i7-Uiv" secondAttribute="top" id="R22-YZ-U1E"/>
                             <constraint firstItem="3T0-XV-6pu" firstAttribute="leading" secondItem="2jY-Rh-GtP" secondAttribute="leading" id="TdG-3I-S8P"/>
-                            <constraint firstItem="3T0-XV-6pu" firstAttribute="top" secondItem="eXQ-i7-Uiv" secondAttribute="top" constant="-2" id="fB8-X0-jJ7"/>
-                            <constraint firstAttribute="bottom" secondItem="3T0-XV-6pu" secondAttribute="bottom" constant="-2" id="vPp-r2-IeM"/>
+                            <constraint firstItem="3T0-XV-6pu" firstAttribute="leading" secondItem="2jY-Rh-GtP" secondAttribute="leading" id="a4r-Fl-jkg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2jY-Rh-GtP"/>
                     </view>
@@ -36,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg-splash" width="375.5" height="812"/>
+        <image name="bg-splash-1" width="375.5" height="812"/>
     </resources>
 </document>

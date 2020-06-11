@@ -9,7 +9,7 @@
 import Foundation
 
 struct MenuEncode : Codable{
-    var spec_id:Int
+    var cat_id:Int
     var store_id:Int
     
 }

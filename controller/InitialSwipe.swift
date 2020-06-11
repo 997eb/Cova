@@ -13,7 +13,7 @@ class InitialSwipe: UIPageViewController, UIPageViewControllerDelegate, UIPageVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        
         self.dataSource = self
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
@@ -54,12 +54,12 @@ class InitialSwipe: UIPageViewController, UIPageViewControllerDelegate, UIPageVi
         guard let viewConyrollerIndex = orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
-   
-    let previousIndex = viewConyrollerIndex - 1
-    
-    guard previousIndex >= 0 else {
-    return orderedViewControllers.last
-    }
+        
+        let previousIndex = viewConyrollerIndex - 1
+        
+        guard previousIndex >= 0 else {
+            return orderedViewControllers.last
+        }
         
         guard orderedViewControllers.count > previousIndex else {
             return nil
@@ -93,6 +93,6 @@ class InitialSwipe: UIPageViewController, UIPageViewControllerDelegate, UIPageVi
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!    }
     
-
-
+    
+    
 }

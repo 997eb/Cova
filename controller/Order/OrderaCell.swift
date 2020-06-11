@@ -12,9 +12,7 @@ class OrderaCell: UITableViewCell {
 
     @IBOutlet weak var check: UIButton!
     
-    
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

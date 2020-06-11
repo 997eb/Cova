@@ -77,61 +77,37 @@ class API: NSObject {
                 }
         }
     }
-    
-    // connect with API to bring stores based on user location ..
-    class func userLocation (lat:String, long:String ,completion : @escaping(_ error: Error?,_ stores: [Stores]?) -> Void){
+
         
-        let url = "https://covaappapi.com/api/customer/store?lat=0.0000000&long=0.0000000"
+         class func userLocation (lat:String, long:String ,completion : @escaping(_ error: Error?,_ stores: storeEncode?) -> Void){
+         
+  let url = "https://covaappapi.com/api/customer/store?lat=\(lat)&long=\(long)"
+                
+                          var request = URLRequest(url:  NSURL(string: url)! as URL)
+                          
+                          request.httpMethod = "GET"
+                     
+                          let session = URLSession.shared
+                          let task = session.dataTask(with: request) { (data, _, error) in
+                  
+
+                              do{
+                                  let response = try JSONDecoder().decode(storeEncode.self, from: data!)
+
+                                  completion(nil,response)
+                                  
+                              }catch{
+                                  completion(error,nil)
+                                  
+                              }
+                              
+                          }
+                          
+                          task.resume()
+                          
+                      }
         
-        //   let url = "https://covaappapi.com/api/customer/store?lat=\(lat)&long=\(long)"
         
-        
-        var request = URLRequest(url:  NSURL(string: url)! as URL)
-        
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(userSetting.getApiToken()!)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        Alamofire.request(request).responseJSON { (response) -> Void in
-            
-            
-            switch response.result {
-            case . failure(let error):
-                completion(error, nil)
-                SVProgressHUD.showError(withStatus:"المعلومات المدخله غير صحيحة")
-                
-            case .success( let value):
-                let json = JSON(value)
-                
-                
-                guard let dataArr = json["data"].array else {
-                    completion(nil,nil)
-                    return
-                }
-                var stores = [Stores]()
-                for data in dataArr{
-                    guard let data = data.dictionary else {return}
-                    let store = Stores()
-                    
-                    store.id = data["id"]?.int ?? 0
-                    store.name = data["name"]?.string ?? ""
-                    store.tagline = data["tagline"]?.string ?? ""
-                    store.logo = data["image_url"]?.string ?? ""
-                    store.header = data["image_header_url"]?.string ?? ""
-                    let open = data["opens_at"]?.string ?? ""
-                    let close = data["closes_at"]?.string ?? ""
-                    store.date = open + "-" + close
-                    
-                    
-                    stores.append(store)
-                }
-                
-                
-                completion(nil,stores)
-                
-            }
-        }
-    }
-    
     // UN COMPLETEd !!!
     
     class func addressAPI (title:String,completion : @escaping(_ error: Error?,_ done: Bool?) -> Void) {
@@ -140,7 +116,7 @@ class API: NSObject {
         
         let parameters = [
             "title" : title,
-            "address" : "\(userSetting.getCityLocation()!) - \(userSetting.getStreetLocation()!)",
+            "address" : "\(userSetting.getCityLocation() ?? "") - \(userSetting.getStreetLocation() ?? "")",
             "latitude" : userSetting.getLat()!,
             "longitude":userSetting.getLong()!,
             ] as [String : Any]
@@ -154,7 +130,6 @@ class API: NSObject {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.httpBody,headers: headers).responseJSON
             {
                 response in
-                // print(response)
                 switch response.result {
                 case . failure(let error):
                     completion(error, false)
@@ -163,7 +138,7 @@ class API: NSObject {
                     
                 case .success( let value):
                     let json = JSON(value)
-                    print(json)
+            
                     
                     guard let id = json["id"].int else {
                         completion(nil,false)
@@ -214,8 +189,7 @@ class API: NSObject {
         let task = session.dataTask(with: request) { (data, _, _) in
             do{
                 let response = try JSONSerialization.jsonObject(with: data!, options: [])
-                print(response)
-                
+
                 
             }catch{
                 completion(nil,false)
@@ -239,7 +213,6 @@ class API: NSObject {
         var request = URLRequest(url:  NSURL(string: url)! as URL)
         
         request.httpMethod = "GET"
-        request.setValue("Bearer \(userSetting.getApiToken()!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         Alamofire.request(request).responseJSON { (response) -> Void in
@@ -249,7 +222,7 @@ class API: NSObject {
                 print(error)
             case .success( let value):
                 let json = JSON(value)
-                
+         
                 //for menus
                 guard let sepcArr = json[].array else {
                     completion(nil,nil)
@@ -267,7 +240,6 @@ class API: NSObject {
                     specification.id = data["id"]?.int ?? 0
                     specification.name_ar = data["name_ar"]?.string ?? ""
                     specification.name_en = data["name_en"]?.string ?? ""
-                    
                     specifications.append(specification)
                     
                     
@@ -280,21 +252,22 @@ class API: NSObject {
     }
     
     // connect with API to bring menu for specific specification
-    class func menuSpecAPI (Sid:Int ,SpeId:Int ,completion : @escaping(_ error: Error?,_ menu: [MenuD]?) -> Void){
+    class func menuSpecAPI (Sid:Int ,SpeId:Int ,completion : @escaping(_ error: Error?,_ menu: MenuD?) -> Void){
         
         
-        let url = "https://covaappapi.com/api/getOrdersBySpec"
+        let url = "https://covaappapi.com/api/customer/getItemsByCat"
+
         
         var request = URLRequest(url:  NSURL(string: url)! as URL)
-        
+    
         request.httpMethod = "POST"
-        request.setValue("Bearer \(userSetting.getApiToken()!)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+             
+              request.setValue("application/json", forHTTPHeaderField: "Accept")
+              request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let menuEnd = MenuEncode(spec_id:SpeId,
+        let menuEnd = MenuEncode(cat_id:SpeId,
                                  store_id:Sid  )
-        
+
         do{
             let jsonBody = try JSONEncoder().encode(menuEnd)
             
@@ -307,13 +280,15 @@ class API: NSObject {
         
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, _, _) in
+        
             do{
                 
-                let response = try JSONDecoder().decode([MenuD].self, from: data!)
+                let response = try JSONDecoder().decode(MenuD?.self, from: data!)
                 completion(nil,response)
                 
             }catch{
-                completion(nil,nil)
+                print(error)
+                completion(error,nil)
                 
             }
             

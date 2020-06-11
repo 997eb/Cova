@@ -39,17 +39,24 @@ class signInViewController: UIViewController {
         guard let passwordIF = password.text, !passwordIF.isEmpty else {return}
         
         API.login(phone: phone.text!, password: password.text!) { (error:Error?, success: Bool) in   if success {
-            print("sucesss")
-            let coffeeVC : mapViewController = UIStoryboard(name: "map", bundle: nil).instantiateViewController(withIdentifier: "map") as! mapViewController
-            self.present(coffeeVC, animated: true, completion: nil)
-        } else {
-            print("not sucesss")
-            }
-        }
+    
+            API.addressAPI(title:"Home") {(error:Error?, done: Bool?) in
+                   
+               if  done == true {
+                   print("sucesss")
+                   
+               } else {
+                   print("not sucesss")
+                   }
+               }
+            
+            self.dismiss(animated: true, completion: nil)
     }
     
 }
-
+    }
+    
+}
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))

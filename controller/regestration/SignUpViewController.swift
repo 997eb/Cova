@@ -87,13 +87,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         API.signup(name: name.text!, password: password.text!, email: email.text!, phone: phone.text!) { (error:Error?, success: Bool) in
             if success {
-                print("sucuss")
-                let coffeeVC : mapViewController = UIStoryboard(name: "map", bundle: nil).instantiateViewController(withIdentifier: "map") as! mapViewController
-                self.present(coffeeVC, animated:true)
-                
-            } else {
-                print(error!)
-            }
+                            API.addressAPI(title:"Home") {(error:Error?, done: Bool?) in
+                               
+                           if  done == true {
+                               print("sucesss")
+                               
+                           } else {
+                               print("not sucesss")
+                               }
+                           }
+                        
+                        self.dismiss(animated: true, completion: nil)
+                }
+
         }
     }
 }

@@ -6,23 +6,37 @@
 //  Copyright © 1441 Ebtsam alkhuzai. All rights reserved.
 //
 
+
 import UIKit
 
 protocol orderViewControllerDelegate : class  {
     
     func passConfirmed(confirmed: Bool ,storeID: Int , totalPrice: Int , quantityCounter:Int, itemID: Int, itemName:String, choices:[Order.items.choices])
-    
+
+    func passCancel (i:Bool)
 }
+
+
 
 
 class orderViewController: UIViewController , UITableViewDelegate,UITableViewDataSource{
     
     
     @IBOutlet weak var cancelView: UIView!
+    
+    
     @IBAction func cancel(_ sender: Any) {
         
-        dismiss(animated: true, completion: nil)
-    }
+        if let delegate = self.delegate {
+            delegate.passCancel(i: true)
+                 }
+        
+         dismiss(animated: true, completion: nil)
+             }
+        
+      //  dismiss(animated: true, completion: nil)
+        
+   // }
     
     @IBOutlet weak var priceLabel: UILabel!
     var menuImgL:String = ""
@@ -33,7 +47,7 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
     
     var choices = [Order.items.choices]()
     var item = Items()
-    var additions = [MenuD.Groups]()
+    var additions = [MenuD.menu.Groups]()
     var choicesItems = [Int]()
     
     var totalPrice:Int = 0
@@ -60,17 +74,7 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
     @IBOutlet weak var itemDescription: UILabel!
     @IBOutlet weak var menuItem: UILabel!
     @IBOutlet weak var menuImg: UIImageView!
-    @IBOutlet weak var orderView: UIView!
-    @IBOutlet weak var coffeeAdditiions: UICollectionView!
-    @IBOutlet weak var small: UIView!
-    @IBOutlet weak var medium: UIView!
-    @IBOutlet weak var large: UIView!
-    @IBOutlet weak var smallPriceLabel: UILabel!
-    @IBOutlet weak var smallLabel: UILabel!
-    @IBOutlet weak var largePriceLabel: UILabel!
-    @IBOutlet weak var largeLabel: UILabel!
-    @IBOutlet weak var mediumPriceLabel: UILabel!
-    @IBOutlet weak var mediumLabel: UILabel!
+   
     
     @IBOutlet weak var quantityView: UIView!
     
@@ -206,13 +210,21 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
     }
     
     @IBAction func addItem(_ sender: Any) {
+        if userSetting.getApiToken() == nil {
+            
+            performSegue(withIdentifier: "signin", sender: nil)
+            
+            
+        }
+        else {
         
         if let delegate = self.delegate {
             
             delegate.passConfirmed(confirmed: true ,storeID: self.storeId , totalPrice: self.totalPrice ,quantityCounter:self.quantityCounter , itemID: self.itemID, itemName: self.menuItemLabel, choices: self.choices)
             
+       
             dismiss(animated: true, completion: nil)
-            
+            }
         }
     }
 }

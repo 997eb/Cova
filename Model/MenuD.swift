@@ -8,10 +8,13 @@
 
 import Foundation
 
-
-
 struct MenuD: Codable {
 
+    
+    var menu_items:[menu]
+    
+    struct menu :Codable{
+  
     var id :Int
     var title:String
     var detail:String
@@ -22,12 +25,18 @@ struct MenuD: Codable {
     var is_non_veg:Int;
     var status: String
     var store_id :Int
-    var specification_id:Int
     var created_at:String
     var updated_at:String
-    var categories:Array<String>
+    var categories : [categories]?
     var menu_item_groups:[Groups]
            
+    struct categories: Codable {
+      
+      var created_at:String?
+      var id :Int?
+      var image_url:String?
+      var title:String?
+              }
     
     struct Groups:Codable{
         
@@ -51,8 +60,6 @@ struct MenuD: Codable {
              }
           
     }
-    
-   
-    
-    
+
+}
 }

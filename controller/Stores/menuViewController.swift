@@ -8,14 +8,17 @@
 
 import UIKit
 
-
-class menuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
+class menuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var itemObj = Items()
     var specObj = Specification()
-    
+    var categoriesArr = [storeEncode.orderStore.categories]()
+    //var storeCate = [Stores.]
+    var i = true
+    var o = 0
+
     var choices = [Order.items.choices]()
-    var menu = [MenuD]()
+    var menu = [MenuD.menu]()
     var specification = [Specification]()
     
     var items:[Int] = []
@@ -30,6 +33,7 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var totalPrice: Int = 0 //for all items
     var quantity : Int = 0
     var itemName : String = ""
+    var storeID: Int = 0
     
     //views from controller
     @IBOutlet weak var itemNumView: UILabel!
@@ -39,16 +43,17 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var header: UIImageView!
-    
     @IBOutlet weak var menuCollictionView: UICollectionView!
     @IBOutlet weak var typeCollictionView: UICollectionView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var cartView: UIView!
-    
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.categoriesArr = Stores.getCategories()
         
         logo.layer.masksToBounds = false
         logo.layer.cornerRadius = logo.frame.height/2
@@ -68,33 +73,27 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         updateMenu()
         downloadTypes()
+        
+        
     }
-    
     
     
     //function to download specification for stores ..
     func downloadTypes(){
-        API.specificationAPI{(error:Error?, specification: [Specification]?) in
-            
-            self.typeCollictionView.scrollToItem(at: NSIndexPath(item: self.specification.count - 1, section: 0) as IndexPath, at: .right, animated: false)
-            
-            if let specification = specification {
-                
-                self.specification = specification
-                self.typeCollictionView.reloadData()
-                
-            }
-            
-        }
+ 
+   
+        self.typeCollictionView.reloadData()
         
+        
+    
     }
     
     //to refresh the muenu for eact specific type
     func RefreshMenue(std:Int,spId:Int ){
-        API.menuSpecAPI(Sid:std, SpeId: spId){(error:Error?, menu: [MenuD]? ) in
+        API.menuSpecAPI(Sid:std, SpeId: spId){(error:Error?, menu: MenuD? ) in
             
             if let menu = menu {
-                self.menu = menu
+                self.menu = menu.menu_items
                 DispatchQueue.main.async {
                     self.menuCollictionView.reloadData()
                 }
@@ -107,10 +106,11 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         super.viewWillAppear(true)
         
+
+        collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize 
+        
         //refresh collictions views ..
         downloadTypes()
-        
-        
         //prepare the interface ..
         header.downloaded(from: Stores.getStoreHeaderImg()!)
         logo.downloaded(from: Stores.getStoreLogoImg()!)
@@ -128,13 +128,12 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // if true .. add item to the cart ..
         if self.itemConfirmed {
             
+            if Stores.getStoreId() != itemObj.getMenuStoreID(){
+                self.updateCart()                  }
             
             self.collectPrices = self.itemObj.getRricesArray()
             collectPrices.append(self.totalItemPrice)
             
-            
-            //checkTheItem(quantity:self.quantity )
-            //if check item .. delete this ..
             self.quatitiyArr = self.itemObj.getquantity()
             quatitiyArr.append(self.quantity)
             
@@ -144,7 +143,13 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.itemsNames = self.itemObj.getItemsNames()
             self.itemsNames.append(self.itemName)
             
-            self.itemObj.saveItems(storeId:Stores.getStoreId()!, total: self.totalItemPrice, quantity: self.quatitiyArr, itemsName:self.itemsNames, itemArr: self.items , totalPrices: self.collectPrices)
+            self.itemObj.saveItems(storeId:Stores.getStoreId()!)
+            
+            self.itemObj.saveCollectedPrices(totalPrices: self.collectPrices)
+            self.itemObj.saveQuantity(quantity: self.quatitiyArr)
+            self.itemObj.savetotal(total: self.totalItemPrice)
+            self.itemObj.saveItemsName(name:self.itemsNames)
+            self.itemObj.saveItemsID(itemArr: self.items)
             
             updateMenu()
             orderItems()
@@ -167,8 +172,10 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func updateMenu(){
         
         if Stores.getStoreId() != itemObj.getMenuStoreID(){
-            RefreshMenue(std:Stores.getStoreId()!, spId: 10) // first selection by default
-            updateCart()
+            let count = categoriesArr.count - 1
+            print(categoriesArr[count].id ?? 1)
+            RefreshMenue(std:Stores.getStoreId()!, spId: self.categoriesArr[count].id!)
+            
         }else {
             RefreshMenue(std:Stores.getStoreId()!, spId: specObj.getSpecification()!)
         }
@@ -201,10 +208,6 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // i may delete this function ..
     func checkTheItem(quantity:Int){
-        
-        
-        //self.items =  self.itemObj.getItems()
-        //self.itemsNames = self.itemObj.getItemsNames()
         
         //first item
         if self.items.count == 0 {
@@ -243,7 +246,6 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     self.itemsNames = self.itemObj.getItemsNames()
                     self.itemsNames.append(self.itemName)
-                    
                 }
                 
             }
@@ -251,7 +253,6 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         
     }
-    
     
     //refresh the cart to add new item ..
     func orderItems()  {
@@ -268,42 +269,76 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let storyboard = UIStoryboard(name: "bill", bundle: nil)
         let destination = storyboard.instantiateViewController(withIdentifier: "bill") as! billViewController
-        
         self.navigationController?.pushViewController(destination, animated: true)
         
-        
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.typeCollictionView {
-            return  specification.count
+            return  self.categoriesArr.count
         }
         return  menu.count
     }
-    
+
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.typeCollictionView {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "type", for: indexPath) as! TypeCell
             
-            cell.type.text = specification[indexPath.item].name_ar
+            cell.type.text = self.categoriesArr[indexPath.row].title
+    
+            if Stores.getStoreId() == itemObj.getMenuStoreID(){
+                
+                typeCollictionView.selectItem(at: itemObj.getIndexPath(), animated: true, scrollPosition: [])
+                
+              updateMenu()
+                
+            }
+            else if self.i == true{
+                  DispatchQueue.main.async {
+                 
+                    self.typeCollictionView.scrollToItem( at: [0,self.categoriesArr.count - 1],at: .right, animated: true)
+                    
+                    self.typeCollictionView.selectItem(at: [0, self.categoriesArr.count - 1 ], animated:true , scrollPosition: [])
+                    self.updateMenu()
+              }
+                
+                self.i = false
+            }
+        
             return cell
-            
+                 
+             
         } else{
+          
             
             let cell =
                 
                 collectionView.dequeueReusableCell(withReuseIdentifier: "menu", for: indexPath) as! menuCell
             
-            let price = self.menu[indexPath.row].price
+            cell.menuImg.image = .none
             
-            cell.menuImg.downloaded(from: menu[indexPath.row].image_url)
-            cell.price.text = "\(price)"
-            cell.typeName.text = self.menu[indexPath.row].title
-            
+            DispatchQueue.main.async {
+                
+                let price = self.menu[indexPath.row].price
+               cell.menuImg.downloaded(from: self.menu[indexPath.row].image_url )
+
+                cell.price.text = "\(price)"
+                cell.typeName.text = self.menu[indexPath.row].title
+                
+                cell.backgroundColor = .clear // very important
+                cell.layer.masksToBounds = false
+                cell.layer.shadowOpacity = 0.2
+                cell.layer.shadowRadius = 4
+                cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+                cell.layer.shadowColor = UIColor.lightGray.cgColor
+
+                cell.contentView.backgroundColor = .white
+                cell.contentView.layer.cornerRadius = 8
+                
+            }
             return cell
         }
         
@@ -311,22 +346,27 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        if Stores.getStoreId() == itemObj.getMenuStoreID(){
+        if collectionView == self.menuCollictionView {
             
-            typeCollictionView.selectItem(at: itemObj.getIndexPath(), animated: true, scrollPosition: [])
+         
+            cell.contentView.layer.masksToBounds = true
+            let radius = cell.contentView.layer.cornerRadius
+            cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+
         }
-        
     }
     
     //select item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == self.typeCollictionView {
+        
             
             itemObj.saveIndexPath(indexPath: indexPath)
-            specObj.saveSpecification(specification: self.specification[indexPath.row].id)
-            self.RefreshMenue(std: Stores.getStoreId()!, spId: specObj.getSpecification()!)
+            specObj.saveSpecification(specification: self.categoriesArr[indexPath.row].id!)
             
+            self.RefreshMenue(std: Stores.getStoreId()!, spId: specObj.getSpecification()!)
+      
         }else{
             
             // to view the details and add a specific item
@@ -342,16 +382,16 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             orderVC.menuImgL = self.menu[indexPath.row].image_url
             orderVC.additions = self.menu[indexPath.row].menu_item_groups
             
-            self.present(orderVC, animated: true, completion:nil)
-            
-            
-            
+            self.present(orderVC, animated: false, completion:nil)
+  
         }
         
     }
     
+    
+    
+    
 }
-
 
 //to use hex colors
 
@@ -378,10 +418,37 @@ extension menuViewController : orderViewControllerDelegate {
     func passConfirmed(confirmed: Bool, storeID: Int, totalPrice: Int, quantityCounter: Int, itemID: Int, itemName: String, choices: [Order.items.choices]) {
         
         itemConfirmed = confirmed
+        self.storeID = storeID
         self.choices = choices
         self.itemName = itemName
         self.totalItemPrice = totalPrice
         self.quantity = quantityCounter
         self.itemID = itemID
+     
+    }
+    
+   func passCancel(i: Bool) {
+        self.i = i
+    }
+
+}
+
+
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat, isOpaque: Bool = true) -> UIImage? {
+        let canvas = CGSize(width: size.width * percentage, height: size.height * percentage)
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: canvas, format: format).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
+    }
+    func resized(toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
+        let canvas = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: canvas, format: format).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
     }
 }

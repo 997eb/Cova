@@ -17,14 +17,14 @@ class billCell: UITableViewCell {
         
         super.awakeFromNib()
         
-        viewBill.layer.cornerRadius = 10
-        viewBill.layer.shadowColor = UIColor.lightGray.cgColor
+    viewBill.layer.cornerRadius = 10
+   /*     viewBill.layer.shadowColor = UIColor.lightGray.cgColor
         viewBill.layer.shadowOpacity = 0.2
         viewBill.layer.shadowRadius = 1
         viewBill.layer.shadowOffset = .zero
         viewBill.layer.shadowPath = UIBezierPath(rect: viewBill.bounds).cgPath
         viewBill.layer.shouldRasterize = true
-        
+        */
     
         // Initialization code
     }

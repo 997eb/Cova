@@ -13,7 +13,10 @@ import SVProgressHUD
 class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // to assign store informations
-    var stores = [Stores]()
+
+    var storesObj : storeEncode?
+    var storeData: [storeEncode.orderStore]?
+    var categoriesDate : [storeEncode.orderStore.categories]?
     
     //interface componenet
     @IBOutlet weak var tableview: UITableView!
@@ -31,6 +34,7 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
         tableview.contentInset = .zero
         tableview.separatorStyle = .none
         
+        
         //call the RefreshStores function to bring the stores
         RefreshStores()
         
@@ -41,20 +45,28 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    
-    // bring the stores near to me from an api
+    // bring the stores near to user from an api
     private func RefreshStores(){
         
-        API.userLocation(lat: userSetting.getLat()!, long: userSetting.getLong()!) { (error:Error?, stores: [Stores]?) in
-            if stores!.isEmpty{
-                SVProgressHUD.showError(withStatus:" لا توجد كافيهات بالقرب منك")}
-            else{ let storess = stores
-                self.stores = storess!
-                self.tableview.reloadData()
+        API.userLocation(lat: userSetting.getLat()!, long: userSetting.getLong()!) { (error:Error?, stores: storeEncode? ) in
+            
+            if stores?.data?.count == 0{
+                SVProgressHUD.showError(withStatus:" لا توجد مقاهي بالقرب منك")
+                
+            }else{
+               if let store = stores {
+                self.storesObj = store
+                self.storeData = self.storesObj?.data
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                    
+                }
+                }
                 
             }
         }
     }
+
     
     
     @IBAction func updateLocation(_ sender: Any) {
@@ -64,20 +76,22 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stores.count
+        return storeData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! coffeeStoreaTableViewCell
         
-        cell.storeName.text = stores[indexPath.row].name
-        cell.tagLine.text = stores[indexPath.row].tagline
+        cell.storeName.text =  self.storeData?[indexPath.row].name
+        cell.tagLine.text =
+            self.storeData?[indexPath.row].tagline
         cell.logo.contentMode = .scaleAspectFill
         cell.header.contentMode = .scaleAspectFill
-        cell.header.downloaded(from: stores[indexPath.row].header)
-        cell.logo.downloaded(from: stores[indexPath.row].logo)
-        cell.Time.text = stores[indexPath.row].date
+        cell.header.downloaded(from: self.storeData?[indexPath.row].categories?[indexPath.row].image_url ?? "")
+        cell.logo.downloaded(from: (self.storeData?[indexPath.row].image_url) ?? "" )
+       
+        cell.Time.text =  "\(String(describing: self.storeData![indexPath.row].opens_at!)) - \(String(describing: self.storeData![indexPath.row].closes_at))"
         
         return cell
     }
@@ -86,9 +100,11 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let storyboard = UIStoryboard(name: "homePage", bundle: nil)
         let destination = storyboard.instantiateViewController(withIdentifier: "menu") as! menuViewController
-        
-        //if user select a store, save the store information .. 
-        Stores.saveStore(name:stores[indexPath.row].name,tagLine:stores[indexPath.row].tagline, headerImg:stores[indexPath.row].header,logo:stores[indexPath.row].logo,id:stores[indexPath.row].id)
+        Stores.saveStore(name:self.storeData?[indexPath.row].name ?? "" ,tagLine:self.storeData?[indexPath.row].tagline ?? "",
+                         headerImg:self.storeData?[indexPath.row].categories?[indexPath.row].image_url ?? "" ,
+                         logo:self.storeData?[indexPath.row].image_url ?? "",
+                         id:(self.storeData?[indexPath.row].id)!)
+        Stores.saveCategories(categories: self.storeData?[indexPath.row].categories ?? [])
         
         self.navigationController?.pushViewController(destination, animated: true)
         

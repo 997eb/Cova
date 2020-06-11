@@ -14,6 +14,7 @@ class Specification:NSObject{
     var id :Int = 0
     var name_en:String = ""
     var name_ar:String = ""
+    var header_img:String = ""
     
     override init() {
         
