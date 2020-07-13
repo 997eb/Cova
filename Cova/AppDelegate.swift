@@ -14,8 +14,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
@@ -24,18 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.overrideUserInterfaceStyle = .light
         }
         
-        let def1 = UserDefaults.standard.set(["ar"], forKey: "AppleLanguages")
+        _ = UserDefaults.standard.set(["ar"], forKey: "AppleLanguages")
         UserDefaults.standard.synchronize()
-        
-       /* if userSetting.getCityLocation() != nil
-            && userSetting.getStreetLocation() != nil
-            && userSetting.getLat()  != nil
-            && userSetting.getLong() != nil {
-       */
+      /*
+        if !(userSetting.getLat()!.isEmpty) && !(userSetting.getLong()!.isEmpty) {
+           
             let tab = UIStoryboard(name: "map", bundle: nil)
                 .instantiateViewController(withIdentifier: "map")
-             window?.rootViewController = tab
-
+             window?.rootViewController = tab*/
+       // }
        // }
         FirebaseApp.configure()
         return true

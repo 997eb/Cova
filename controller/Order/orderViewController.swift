@@ -4,7 +4,7 @@
 //
 //  Created by Ebtsam alkhuzai on 01/09/1441 AH.
 //  Copyright © 1441 Ebtsam alkhuzai. All rights reserved.
-//
+
 
 
 import UIKit
@@ -16,28 +16,17 @@ protocol orderViewControllerDelegate : class  {
     func passCancel (i:Bool)
 }
 
-
-
-
 class orderViewController: UIViewController , UITableViewDelegate,UITableViewDataSource{
-    
-    
+
     @IBOutlet weak var cancelView: UIView!
-    
-    
     @IBAction func cancel(_ sender: Any) {
         
         if let delegate = self.delegate {
             delegate.passCancel(i: true)
                  }
-        
          dismiss(animated: true, completion: nil)
              }
-        
-      //  dismiss(animated: true, completion: nil)
-        
-   // }
-    
+
     @IBOutlet weak var priceLabel: UILabel!
     var menuImgL:String = ""
     
@@ -74,13 +63,11 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
     @IBOutlet weak var itemDescription: UILabel!
     @IBOutlet weak var menuItem: UILabel!
     @IBOutlet weak var menuImg: UIImageView!
-   
-    
+
     @IBOutlet weak var quantityView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         tableview.tableFooterView = UIView()
         tableview.separatorInset = .zero
@@ -88,9 +75,7 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
         tableview.separatorStyle = .none
         tableview.allowsMultipleSelection = true
         
-        
         self.quantityText.text = "\(self.quantityCounter)"
-        
         
         //assign the values ..
         menuItem.text = self.menuItemLabel
@@ -120,17 +105,14 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
         
     }
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return additions.count
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return additions[section].menu_item_choices.count
     }
-    
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width - 15 , height: 40))
@@ -211,10 +193,7 @@ class orderViewController: UIViewController , UITableViewDelegate,UITableViewDat
     
     @IBAction func addItem(_ sender: Any) {
         if userSetting.getApiToken() == nil {
-            
             performSegue(withIdentifier: "signin", sender: nil)
-            
-            
         }
         else {
         

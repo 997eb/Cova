@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class menuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -73,19 +74,14 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         updateMenu()
         downloadTypes()
-        
-        
     }
     
     
     //function to download specification for stores ..
     func downloadTypes(){
  
-   
         self.typeCollictionView.reloadData()
-        
-        
-    
+
     }
     
     //to refresh the muenu for eact specific type
@@ -267,6 +263,7 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // submit the order !!
     @IBAction func submitTheOrder(_ sender: Any) {
         
+        
         let storyboard = UIStoryboard(name: "bill", bundle: nil)
         let destination = storyboard.instantiateViewController(withIdentifier: "bill") as! billViewController
         self.navigationController?.pushViewController(destination, animated: true)
@@ -318,27 +315,31 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
                 collectionView.dequeueReusableCell(withReuseIdentifier: "menu", for: indexPath) as! menuCell
             
-            cell.menuImg.image = .none
             
-            DispatchQueue.main.async {
+            
+            let price = self.menu[indexPath.row].price
+            cell.price.text = "\(price)"
+            cell.typeName.text = self.menu[indexPath.row].title
+            cell.backgroundColor = .clear // very important
+            cell.layer.masksToBounds = false
+            cell.layer.shadowOpacity = 0.2
+            cell.layer.shadowRadius = 4
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell.layer.shadowColor = UIColor.lightGray.cgColor
+            cell.contentView.backgroundColor = .white
+            cell.contentView.layer.cornerRadius = 8
+            
+            
+          //  DispatchQueue.main.async {
                 
-                let price = self.menu[indexPath.row].price
-               cell.menuImg.downloaded(from: self.menu[indexPath.row].image_url )
-
-                cell.price.text = "\(price)"
-                cell.typeName.text = self.menu[indexPath.row].title
+          // let url = NSURL.init(string: self.menu[indexPath.row].image_thumbnail_url ?? "")
+            let url = NSURL.init(string: self.menu[indexPath.row].image_url )
+     
+                let placeholder = UIImage(named: "Webp.net-resizeimage")
+                let filter = AspectScaledToFillSizeFilter(size: cell.menuImg.frame.size)
+                cell.menuImg.af_setImage(withURL: url! as URL, placeholderImage: placeholder, filter: filter)
                 
-                cell.backgroundColor = .clear // very important
-                cell.layer.masksToBounds = false
-                cell.layer.shadowOpacity = 0.2
-                cell.layer.shadowRadius = 4
-                cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-                cell.layer.shadowColor = UIColor.lightGray.cgColor
-
-                cell.contentView.backgroundColor = .white
-                cell.contentView.layer.cornerRadius = 8
-                
-            }
+           // }
             return cell
         }
         
@@ -348,11 +349,10 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == self.menuCollictionView {
             
-         
             cell.contentView.layer.masksToBounds = true
             let radius = cell.contentView.layer.cornerRadius
             cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-
+            
         }
     }
     
@@ -360,13 +360,10 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == self.typeCollictionView {
-        
-            
             itemObj.saveIndexPath(indexPath: indexPath)
             specObj.saveSpecification(specification: self.categoriesArr[indexPath.row].id!)
-            
             self.RefreshMenue(std: Stores.getStoreId()!, spId: specObj.getSpecification()!)
-      
+            
         }else{
             
             // to view the details and add a specific item
@@ -381,16 +378,10 @@ class menuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             orderVC.itemPrice = self.menu[indexPath.row].price
             orderVC.menuImgL = self.menu[indexPath.row].image_url
             orderVC.additions = self.menu[indexPath.row].menu_item_groups
-            
             self.present(orderVC, animated: false, completion:nil)
   
         }
-        
     }
-    
-    
-    
-    
 }
 
 //to use hex colors

@@ -4,7 +4,7 @@
 //
 //  Created by Ebtsam alkhuzai on 14/08/1441 AH.
 //  Copyright © 1441 Ebtsam alkhuzai. All rights reserved.
-//
+
 
 import UIKit
 import Alamofire
@@ -38,8 +38,10 @@ class signInViewController: UIViewController {
         guard let phoneIF = phone.text , !phoneIF.isEmpty else {return}
         guard let passwordIF = password.text, !passwordIF.isEmpty else {return}
         
-        API.login(phone: phone.text!, password: password.text!) { (error:Error?, success: Bool) in   if success {
-    
+         SVProgressHUD.show()
+        API.login(phone: phone.text!, password: password.text!) { (error:Error?, success: Bool) in
+            if success {
+       SVProgressHUD.showSuccess(withStatus: "تم تسجيل الدخول بنجاح")
             API.addressAPI(title:"Home") {(error:Error?, done: Bool?) in
                    
                if  done == true {
@@ -68,9 +70,3 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-
-
-
-
-
-

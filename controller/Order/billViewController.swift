@@ -4,15 +4,14 @@
 //
 //  Created by Ebtsam alkhuzai on 14/09/1441 AH.
 //  Copyright © 1441 Ebtsam alkhuzai. All rights reserved.
-//
+
 
 import UIKit
 import SVProgressHUD
 
 
 class billViewController: UIViewController {
-    
-    
+
     var choices = [Order.items.choices]()
     var menu = [MenuD]()
     var specification = [Specification]()
@@ -22,7 +21,8 @@ class billViewController: UIViewController {
     var itemsNames: [String] = []
     var quantity: [Int] = []
     var prices: [Int] = []
- //   @IBOutlet weak var deliveryTime: UILabel!
+
+    @IBOutlet weak var delivery_fee: UILabel!
     @IBOutlet weak var currentDay: UILabel!
     @IBOutlet weak var totalDeliveryPrice: UILabel!
     @IBOutlet weak var itemsTotalPrice: UILabel!
@@ -32,14 +32,13 @@ class billViewController: UIViewController {
     @IBOutlet weak var deliveryLabelView: UIView!
     @IBOutlet weak var deliveryView: UIView!
     
-    
     @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var billView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableview.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-        tableview.reloadData()
+    self.tableview.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+      tableview.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,8 +61,7 @@ class billViewController: UIViewController {
     }
     
     @IBAction func submitTheOrder(_ sender: Any) {
-        
-        
+
         let quantityItems = itemsObj.getOrder()
         
         API.orderAPI(quantityItems:quantityItems) {(error:Error?, done: Bool?) in
@@ -71,15 +69,11 @@ class billViewController: UIViewController {
             if  done == true {
                 self.performSegue(withIdentifier: "done", sender: nil)
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
-                
-            }else {
+            }else{
                 SVProgressHUD.showError(withStatus:"عذرا, لايمكن اتمام الطلب")
             }
-            
             self.clearCart()
-            
         }
-        
     }
     
     func clearCart(){
@@ -185,24 +179,16 @@ class billViewController: UIViewController {
         let formattedDate = format.string(from: date)
         self.currentDay.text = formattedDate
         
-       /* let format2 = DateFormatter()
-        format2.dateFormat = "HH:mm a"
-        format2.locale = Locale(identifier: "en")
-        date.addTimeInterval(60 * 60)
-        let formattedDate2 = format2.string(from: date)
-        self.deliveryTime.text = formattedDate2
-        */
-        
         if userSetting.getCityLocation() != nil && userSetting.getStreetLocation() != nil {
         
         self.location.text = "\(String(describing: userSetting.getCityLocation()!)) - \(String(describing: userSetting.getStreetLocation()!))"
         }
-        
+        self.delivery_fee.text = "\(Stores.getFee())"
         self.itemsNames = itemsObj.getItemsNames()
         self.quantity = itemsObj.getquantity()
         self.prices = itemsObj.getRricesArray()
         
-        let total = itemsObj.getTotalItemPrices() + 5
+        let total = itemsObj.getTotalItemPrices() + Stores.getFee()
         self.totalDeliveryPrice.text = "\(total)"
         self.storeName.text = Stores.getStoreName()
         self.itemsTotalPrice.text = "\(itemsObj.getTotalItemPrices())"
@@ -213,40 +199,23 @@ class billViewController: UIViewController {
         deliveryLabelView.layer.cornerRadius = 10
         deliveryLabelView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        deliveryView.layer.cornerRadius = 10
-        deliveryView.layer.shadowColor = UIColor.lightGray.cgColor
-        deliveryView.layer.shadowOpacity = 0.2
-        deliveryView.layer.shadowRadius = 1
-        deliveryView.layer.shadowOffset = .zero
-        deliveryView.layer.shadowPath = UIBezierPath(rect: deliveryView.bounds).cgPath
-        deliveryView.layer.shouldRasterize = true
-        
+       deliveryView.layer.cornerRadius = 10
         billView.layer.cornerRadius = 10
-        billView.layer.shadowColor = UIColor.lightGray.cgColor
-        billView.layer.shadowOpacity = 0.2
-        billView.layer.shadowRadius = 1
-        billView.layer.shadowOffset = .zero
-        billView.layer.shadowPath = UIBezierPath(rect: billView.bounds).cgPath
-        billView.layer.shouldRasterize = true
-        
-        tableview.allowsSelection = false
+       tableview.allowsSelection = false
         tableview.tableFooterView = UIView()
         tableview.separatorInset = .zero
         tableview.contentInset = .zero
         tableview.separatorStyle = .none
         
         tableview.layoutIfNeeded()
-        
-        
+
     }
-    
 }
 
 extension billViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.itemsNames.count
-        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -255,7 +224,6 @@ extension billViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -263,7 +231,6 @@ extension billViewController:UITableViewDataSource,UITableViewDelegate{
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -290,6 +257,4 @@ extension billViewController:UITableViewDataSource,UITableViewDelegate{
         
         return UITableViewCell()
     }
-    
 }
-

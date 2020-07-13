@@ -61,10 +61,9 @@ class Items:NSObject{
                def.synchronize()
         
 }
-           
-
-
     
+    
+           
     func getItemsNames() -> Array<String>{
         let def = UserDefaults.standard
         return def.object(forKey: "itemName") as? Array<String> ?? []

@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import AlamofireImage
 
 
 class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -57,6 +58,7 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
                if let store = stores {
                 self.storesObj = store
                 self.storeData = self.storesObj?.data
+                
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
                     
@@ -82,17 +84,26 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! coffeeStoreaTableViewCell
+
+        let urlLogo = NSURL.init(string: self.storeData?[indexPath.row].image_url ?? " ")
+        let placeholder = UIImage(named: "Webp.net-resizeimage")
+        let filter = AspectScaledToFillSizeFilter(size: cell.logo.frame.size)
+        cell.logo.af_setImage(withURL: urlLogo! as URL, placeholderImage: placeholder, filter: filter)
+        
+        /*     let urlHeader = NSURL.init(string: self.storeData?[indexPath.row].categories?[indexPath.row].image_url ?? "")
+         
+         let placeholderHeader = UIImage(named: "who-are-you")
+         let filterHeader = AspectScaledToFitSizeFilter(size: cell.header.frame.size)
+         cell.header.af_setImage(withURL: urlHeader! as URL, placeholderImage: placeholderHeader, filter: filterHeader)
+         */
         
         cell.storeName.text =  self.storeData?[indexPath.row].name
         cell.tagLine.text =
             self.storeData?[indexPath.row].tagline
-        cell.logo.contentMode = .scaleAspectFill
         cell.header.contentMode = .scaleAspectFill
-        cell.header.downloaded(from: self.storeData?[indexPath.row].categories?[indexPath.row].image_url ?? "")
-        cell.logo.downloaded(from: (self.storeData?[indexPath.row].image_url) ?? "" )
-       
-        cell.Time.text =  "\(String(describing: self.storeData![indexPath.row].opens_at!)) - \(String(describing: self.storeData![indexPath.row].closes_at))"
         
+        cell.header.downloaded(from: self.storeData?[indexPath.row].image_header_url ?? "")
+        cell.Time.text =  "\(String(describing: self.storeData![indexPath.row].opens_at!)) - \(String(describing: self.storeData![indexPath.row].closes_at))"
         return cell
     }
     
@@ -101,16 +112,17 @@ class CoffeeStoresViewController: UIViewController, UITableViewDelegate, UITable
         let storyboard = UIStoryboard(name: "homePage", bundle: nil)
         let destination = storyboard.instantiateViewController(withIdentifier: "menu") as! menuViewController
         Stores.saveStore(name:self.storeData?[indexPath.row].name ?? "" ,tagLine:self.storeData?[indexPath.row].tagline ?? "",
-                         headerImg:self.storeData?[indexPath.row].categories?[indexPath.row].image_url ?? "" ,
+                         headerImg:self.storeData?[indexPath.row].image_header_url ?? "" ,
                          logo:self.storeData?[indexPath.row].image_url ?? "",
                          id:(self.storeData?[indexPath.row].id)!)
+        
+        Stores.saveFee(fee: self.storeData?[indexPath.row].delivery_fee ?? 0)
         Stores.saveCategories(categories: self.storeData?[indexPath.row].categories ?? [])
         
         self.navigationController?.pushViewController(destination, animated: true)
         
     }
 }
-
 
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {

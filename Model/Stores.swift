@@ -29,6 +29,19 @@ class Stores{
     }
     */
     
+    
+     class   func saveFee(fee: Int){
+            let def = UserDefaults.standard
+            def.set(fee, forKey: "fee")
+                   def.synchronize()
+            
+    }
+    
+    class func getFee() -> Int{
+           let def = UserDefaults.standard
+           return def.object(forKey: "fee") as? Int ?? 0
+       }
+    
     class func saveStore(name:String,tagLine:String, headerImg:String,logo:String,id:Int){
         let def = UserDefaults.standard
         //print(categories)

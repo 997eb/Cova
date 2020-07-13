@@ -26,12 +26,12 @@ class API: NSObject {
             "role":"customer"
             ] as [String : Any]
         
-        Alamofire.request(url, method: .post, parameters:parameters,encoding: URLEncoding.default, headers: header ).validate(statusCode: 200..<300)
+        Alamofire.request(url, method: .post, parameters:parameters,encoding: URLEncoding.default, headers: header ).validate(statusCode: 200..<400)
             .responseJSON{ response in
                 switch response.result {
                 case . failure(let error):
                     completion(error, false)
-                    SVProgressHUD.showError(withStatus:"The given data was invalid")
+                    SVProgressHUD.showError(withStatus:"المعلومات المدخلة غير صحيحة")
                     
                 case .success( let value):
                     let json = JSON(value)
@@ -59,50 +59,44 @@ class API: NSObject {
             "role": "customer"
             ] as [String : Any]
         
-        Alamofire.request(url, method: .post, parameters:parameters,encoding: URLEncoding.default, headers: header ).validate(statusCode: 200..<300)
+        Alamofire.request(url, method: .post, parameters:parameters,encoding: URLEncoding.default, headers: header ).validate(statusCode: 200..<400)
+            
             .responseJSON{ response in
                 switch response.result {
-                case . failure(let error):
-                    completion(error, false)
-                    SVProgressHUD.showError(withStatus:"المعلومات المدخله غير صحيحة")
-                    
-                    
+               
                 case .success( let value):
                     let json = JSON(value)
                     let api_token = json["token"].string
                     userSetting.saveApiToken(token: api_token!)
                     completion(nil, true)
                     
-                    
+                case . failure(let error):
+                    completion(error, false)
+                    SVProgressHUD.showError(withStatus:error.localizedDescription.description)
                 }
         }
     }
-
+    
+    class func userLocation (lat:String, long:String ,completion : @escaping(_ error: Error?,_ stores: storeEncode?) -> Void){
         
-         class func userLocation (lat:String, long:String ,completion : @escaping(_ error: Error?,_ stores: storeEncode?) -> Void){
-         
-  let url = "https://covaappapi.com/api/customer/store?lat=\(lat)&long=\(long)"
-                
-                          var request = URLRequest(url:  NSURL(string: url)! as URL)
-                          
-                          request.httpMethod = "GET"
-                     
-                          let session = URLSession.shared
-                          let task = session.dataTask(with: request) { (data, _, error) in
-                  
+        let url = "https://covaappapi.com/api/customer/store?lat=\(lat)&long=\(long)"
+        var request = URLRequest(url:  NSURL(string: url)! as URL)
+        request.httpMethod = "GET"
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, _, error) in
+            
+            do{
+                let response = try JSONDecoder().decode(storeEncode.self, from: data!)
 
-                              do{
-                                  let response = try JSONDecoder().decode(storeEncode.self, from: data!)
-
-                                  completion(nil,response)
+                           completion(nil,response)
+                print(response)
                                   
                               }catch{
-                                  completion(error,nil)
-                                  
+                           completion(error,nil)
                               }
                               
                           }
-                          
                           task.resume()
                           
                       }
@@ -284,7 +278,9 @@ class API: NSObject {
             do{
                 
                 let response = try JSONDecoder().decode(MenuD?.self, from: data!)
+                print(response)
                 completion(nil,response)
+                
                 
             }catch{
                 print(error)

@@ -23,7 +23,7 @@ class TypeCell: UICollectionViewCell {
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 0.5
         containerView.layer.borderColor = UIColor.gray.cgColor
-        TypeImg.image = UIImage(named: "food.png")
+       // TypeImg.image = UIImage(named: "food.png")
         
 
     }
@@ -37,14 +37,14 @@ class TypeCell: UICollectionViewCell {
                 
             containerView.backgroundColor = UIColor(rgb: 0x45193e)
                 type.textColor = UIColor.white
-                TypeImg.image = UIImage(named: "food-2.png")
+               // TypeImg.image = UIImage(named: "food-2.png")
                 
             }
             else
             {
                 containerView.backgroundColor = UIColor.clear
                 type.textColor = UIColor.gray
-                TypeImg.image = UIImage(named: "food.png")
+               // TypeImg.image = UIImage(named: "food.png")
             }
         }
     }

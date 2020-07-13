@@ -85,19 +85,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         guard let phoneIF = phone.text, !phoneIF.isEmpty else {return}
         guard let passwordIF = password.text, !passwordIF.isEmpty else {return}
         
+        
+        SVProgressHUD.show()
         API.signup(name: name.text!, password: password.text!, email: email.text!, phone: phone.text!) { (error:Error?, success: Bool) in
+            
             if success {
-                            API.addressAPI(title:"Home") {(error:Error?, done: Bool?) in
-                               
-                           if  done == true {
-                               print("sucesss")
-                               
-                           } else {
-                               print("not sucesss")
-                               }
-                           }
+                SVProgressHUD.showSuccess(withStatus: "تم التسجيل بنجاح")
+                
+                API.addressAPI(title:"Home") {(error:Error?, done: Bool?) in
+                    
+                    if  done == true {
+                        print("sucesss")
                         
-                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        print("not sucesss")
+                    }
+                }
+                
+                self.dismiss(animated: true, completion: nil)
                 }
 
         }

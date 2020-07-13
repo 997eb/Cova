@@ -11,6 +11,7 @@ target 'Cova' do
      pod 'IQKeyboardManagerSwift'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
+pod 'AlamofireImage'
 
   # Pods for Cova
 

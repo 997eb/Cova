@@ -4,7 +4,7 @@
 //
 //  Created by Ebtsam alkhuzai on 21/08/1441 AH.
 //  Copyright © 1441 Ebtsam alkhuzai. All rights reserved.
-//
+
 
 import UIKit
 
@@ -18,12 +18,7 @@ class coffeeStoreaTableViewCell: UITableViewCell {
         header.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         cellView.layer.cornerRadius = 10
-        cellView.layer.shadowColor = UIColor.lightGray.cgColor
-        cellView.layer.shadowOpacity = 0.2
-        cellView.layer.shadowRadius = 1
-        cellView.layer.shadowOffset = .zero
-        cellView.layer.shadowPath = UIBezierPath(rect: cellView.bounds).cgPath
-        cellView.layer.shouldRasterize = true
+      
         
         logo.layer.borderWidth = 1
         logo.layer.masksToBounds = false

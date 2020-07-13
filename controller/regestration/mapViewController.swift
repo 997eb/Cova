@@ -19,9 +19,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     var cityString2:String = ""
     var streetString2: String = ""
-    
-   // var lat:String = userSetting.getLat() ?? "21.3606920"
-   // var long:String = userSetting.getLong() ?? "39.7897930"
+
 
      var lat:String = userSetting.getLat() ?? "21.40185484"
      var long:String = userSetting.getLong() ?? "39.80361974"

@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
   - Firebase/Analytics (6.25.0):
     - Firebase/Core
   - Firebase/Core (6.25.0):
@@ -86,6 +88,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - AlamofireImage
   - Firebase/Analytics
   - Firebase/Crashlytics
   - IQKeyboardManagerSwift
@@ -95,6 +98,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireImage
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -115,6 +119,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Firebase: 5719b4f965f76643241a1bb8244483ff6117db39
   FirebaseAnalytics: 93565f3f0f0f50a5d8770850bfe6a82eaba5db27
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
@@ -133,6 +138,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: f76ec2943a03e945d6b0942fd73d5a368d4c6775
+PODFILE CHECKSUM: e9483868173c2e9477bc4f45fe45e34baeb22d95
 
 COCOAPODS: 1.9.1
